@@ -1,0 +1,216 @@
+<head>
+    {{!-- checkout page --}}
+    {{!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet"> --}}
+
+    {{!-- <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css"> --}}
+    <link rel="stylesheet" href="/css/animate.css">
+
+    {{!-- <link rel="stylesheet" href="/css/owl.carousel.min.css"> --}}
+    {{!-- <link rel="stylesheet" href="/css/owl.theme.default.min.css"> --}}
+    {{!-- <link rel="stylesheet" href="/css/magnific-popup.css"> --}}
+
+    {{!-- <link rel="stylesheet" href="/css/aos.css"> --}}
+
+    {{!-- <link rel="stylesheet" href="/css/ionicons.min.css"> --}}
+
+    {{!-- <link rel="stylesheet" href="/css/bootstrap-datepicker.css"> --}}
+    {{!-- <link rel="stylesheet" href="/css/jquery.timepicker.css"> --}}
+
+
+    {{!-- <link rel="stylesheet" href="/css/flaticon.css"> --}}
+    {{!-- <link rel="stylesheet" href="/css/icomoon.css"> --}}
+    <link rel="stylesheet" href="/css/style_checkout.css">
+
+</head>
+
+{{>header}}
+<div class="hero-wrap hero-bread" style="background-image: url('images/bg_6.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Checkout</span></p>
+                <h1 class="mb-0 bread">Checkout</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10 ftco-animate">
+                <form action="/add-order" method="POST" class="billing-form">
+                    <h3 class="mb-4 billing-heading">Billing Details</h3>
+                    {{#infoUser}}
+                    <div class="row align-items-end">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Full Name (Mr/Mrs):</label>
+                                <h4>{{this.fullName}}</h4>
+                            </div>
+                        </div>
+                        {{!-- <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="lastname">Address</label>
+                                <input type="text" id="address" name="address" class="form-control" placeholder="">
+                            </div>
+                        </div> --}}
+                        <div class="w-100"></div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="country">State / Country</label>
+                                <div class="select-wrap">
+                                    <div class="icon"><span class="ion-ios-arrow-down"></span></div>
+                                    <select name="country" id="country" class="form-control">
+                                        <option value="France">France</option>
+                                        <option value="Italy">Italy</option>
+                                        <option value="Philippines">Philippines</option>
+                                        <option value="South">South Korea</option>
+                                        <option value="United">United States</option>
+                                        <option value="Japan">Japan</option>
+                                        <option value="Viet-Nam">Viet Nam</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="streetaddress">Street Address</label>
+                                <input id="address" name="address" type="text" class="form-control" placeholder="House number and street name">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input id="district" name="district" type="text" class="form-control"
+                                    placeholder="District">
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="towncity">Town / City</label>
+                                <input id="city" name="city" type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="postcodezip">Postcode / ZIP *</label>
+                                <input type="text" class="form-control" placeholder="">
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="phone">Phone Number:</label>
+                                <h4>{{this.phoneNum}}</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="emailaddress">Email Address</label>
+                                <h4>{{this.email}}</h4>
+                            </div>
+                        </div>
+                        <div class="w-100"></div>
+                    </div>
+                    {{/infoUser}}
+
+
+                    <div class="row mt-5 pt-3 d-flex">
+                        {{#if products}}
+                        <div class="col-md-6">
+                            <div class="cart-detail bg-light p-3 p-md-4">
+                                <h3 class="billing-heading mb-4">Information cart</h3>
+                                <div class="row" style="padding-bottom: 15px">
+                                    <div class="col-4" style="padding-left: 30px">Name</div>
+                                    <div class="col-4" style="padding-left: 65px">Quantity</div>
+                                    <div class="col-4" style="padding-left: 30px">Total Price ($)</div>
+                                </div>
+                                {{#each products}}
+                                <div class="form-group">
+                                    <div class="col-md-12">
+
+                                        <div class="row">
+                                            <div class="col-4">
+                                                {{this.item.title}}
+                                            </div>
+                                            <div class="col-4" style="padding-left: 80px">
+                                                {{this.qty}}
+                                            </div>
+                                            <div class="col-4" style="padding-left: 40px">
+                                                ${{this.price}}.00
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {{/each}}
+
+                            </div>
+                        </div>
+                        {{/if}}
+
+                        <div class="col-md-6 d-flex">
+                            <div class="cart-detail cart-total bg-light p-3 p-md-4">
+                                <h3 class="billing-heading mb-4">Cart Total</h3>
+                                <p class="d-flex">
+                                    <span>Subtotal</span>
+                                    <span>${{total}}.00</span>
+                                </p>
+                                <p class="d-flex">
+                                    <span>Delivery</span>
+                                    <span>$0.00</span>
+                                </p>
+                                <p class="d-flex">
+                                    <span>Discount</span>
+                                    <span> {{discount}}</span>
+                                </p>
+                                <hr>
+                                <p class="d-flex total-price">
+                                    <span>Total</span>
+                                    {{#if totalDiscount}}
+                                    <span>${{totalDiscount}}</span>
+                                    {{else}}
+                                    <span>${{total}}.00</span>
+                                    {{/if}}
+                                </p>
+                                <p><button type="submit" class="btn btn-primary py-3 px-4">Place an order</button></p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div> <!-- .col-md-8 -->
+        </div>
+    </div>
+</section> <!-- .section -->
+
+
+<!-- loader -->
+<div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+            stroke="#F96D00" /></svg></div>
+
+<script src="/javascripts/jquery.min.js"></script>
+<script src="/javascripts/jquery-migrate-3.0.1.min.js"></script>
+{{!-- <script src="/javascripts/popper.min.js"></script> --}}
+{{!-- <script src="/javascripts/bootstrap.min.js"></script> --}}
+{{!-- <script src="/javascripts/jquery.easing.1.3.js"></script> --}}
+<script src="/javascripts/jquery.waypoints.min.js"></script>
+<script src="/javascripts/jquery.stellar.min.js"></script>
+<script src="/javascripts/owl.carousel.min.js"></script>
+<script src="/javascripts/jquery.magnific-popup.min.js"></script>
+<script src="/javascripts/aos.js"></script>
+{{!-- <script src="/javascripts/jquery.animateNumber.min.js"></script> --}}
+{{!-- <script src="/javascripts/bootstrap-datepicker.js"></script> --}}
+<script src="/javascripts/scrollax.min.js"></script>
+<script src="/javascripts/main_checkout.js"></script>
+
+
+
+
+{{>footer}}
+
+<script src="https://js.stripe.com/v3/"></script>
+{{!-- <script src="src/javascripts/checkout.hbs"></script> --}}

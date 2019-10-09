@@ -1,0 +1,112 @@
+{{>header}}
+<div class="container" style="padding-top:20px; padding-bottom:30px">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title">Edit Profile</h4>
+                            <p class="card-category">Complete your profile</p>
+                        </div>
+                        <div class="card-body">
+    
+                        
+                            <form action="/user/update/{{users.email}}" method="post">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Username (Email)</label>
+                                            <input type="text" class="form-control" value="{{users.email}}" name="email"
+                                                id="email" placeholder="" disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Full Name</label>
+                                            <input value="{{users.fullName}}" type="text" id="fullName" name="fullName"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Birthday</label>
+                                          
+                                            <input value="{{birthday}}" type="date" id="birthday" name="birthday"
+                                                class="form-control">
+                                                
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Company</label>
+                                            <input value="{{users.company}}" type="text" id="company" name="company"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Phone Number</label>
+                                            <input value="{{users.phoneNum}}" type="number" id="phoneNum" name="phoneNum"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating">Adress</label>
+                                            <input value="{{users.address}}" type="text" id="address" name="address"
+                                                class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>About Me</label>
+                                            <div class="form-group">
+                                                <textarea id="description" name="description" class="form-control"
+                                                    rows="5">{{users.description}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="submit"  class="btn btn-danger pull-right">Update Profile</button>
+                                <div class="clearfix"></div>
+                            </form>
+                         
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card card-profile">
+                        <div class="card-body">
+                            {{!-- <h6 class="card-category text-gray">OrderList</h6> --}}
+                            <h4 class="card-title" style="padding-bottom: 10px">Order List</h4>
+                            <p class="card-description">
+                                {{#each orderList}}
+                                <ul class="list-group" style="padding-bottom: 10px">
+                                    <li class="list-group-item">{{this.orderInfo.orderDate}}
+                                        <a href="/{{this._id}}" class="btn btn-danger pull-right">Detail</a>
+                                    </li>
+
+                                </ul>
+                                {{/each}}
+                            </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{>footer}}
