@@ -8,15 +8,15 @@ const nodemailer = require('nodemailer');
 let sizes = 12;
 /* GET home page. */
 router.get('/', async function (req, res, next) {
-  var ratingStart = []
-  Product.find((err, docs) => {
-    for (var i = 0; i < docs.length; i++) {
-      ratingStart.push(docs[i].productRate)
-    }
-    var list = ratingStart.sort((a, b) => {
-      return b - a
-    })
-  })
+  // var ratingStart = []
+  // Product.find((err, docs) => {
+  //   for (var i = 0; i < docs.length; i++) {
+  //     ratingStart.push(docs[i].productRate)
+  //   }
+  //   var list = ratingStart.sort((a, b) => {
+  //     return b - a
+  //   })
+  // })
 
   var size = 8;
   productChunks = await paginate(1, size)
@@ -39,20 +39,34 @@ router.get('/product/:page', async (req, res) => {
 })
 
 router.get('/product-search', async (req, res) => {
-  var pars = req.query.search;
+  console.log(req.query.search)
   Product.find({
-    'title': pars
-  }, (err, docs) => {})
-  res.render('../pages/product')
+    'title': req.query.search
+  }, (err, docs) => {
+    console.log(docs)
+    res.render('pages/product',{products:docs})
+  })
+
 })
+
 router.get('/product-more', async (req, res) => {
   sizes = await (sizes + 8)
-  var productChunks = [];
-  productChunks = await paginate(1, sizes)
-  await res.render('pages/product', {
-    title: 'Shopping Cart',
-    products: productChunks
-  });
+  Product.find(async(err,docs)=>{
+    if(sizes > docs.length){
+      sizes = docs.length
+      var hidenMore = true;
+    }
+
+    var productChunks = [];
+    productChunks = await paginate(1, sizes)
+    await res.render('pages/product', {
+      title: 'Shopping Cart',
+      products: productChunks,
+      hidenMore : hidenMore
+    });
+
+  })
+
 })
 
 router.post('/add-to-cart/:id', function (req, res, next) {
