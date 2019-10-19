@@ -242,9 +242,10 @@ router.post('/add-order', async function (req, res, next) {
         "phoneNum": user.phoneNum,
         "address": req.body.address,
         "district": req.body.district,
-        "ctiy": req.body.city,
+        "city": req.body.city,
         "country": req.body.country
       },
+      "status": true,
       "numberOrder": NumberOrder
     }
     await Product.findOneAndUpdate({

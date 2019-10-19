@@ -1,0 +1,165 @@
+{{>header}}
+<div class="container" style="padding-top:20px; padding-bottom:30px">
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="card bg-light">
+                        <div class="card-header card-header-danger">
+                            <h4 class="card-title font-weight-bold">Order Detail</h4>
+                            <p class="card-category">View all information in Order</p>
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Order Date:</label>
+                                        {{orderDetail.orderDate}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Product Name:</label>
+                                        {{orderDetail.proName}}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Product Price:</label>
+
+                                        ${{orderDetail.proPrice}}
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Order Quantity:</label>
+                                        {{orderDetail.totalQuantity}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Customer Name:</label>
+                                        {{orderDetail.userInfo.name}}
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Email:</label>
+
+                                        {{orderDetail.userInfo.email}}
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Phone Number:</label>
+
+                                        {{orderDetail.userInfo.phoneNum}}
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Discount:</label>
+                                        {{orderDetail.couponCode.description}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Adress Shipping:</label>
+                                        {{orderDetail.userInfo.address}},{{orderDetail.userInfo.district}},
+                                        {{orderDetail.userInfo.city}},{{orderDetail.userInfo.country}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Status Shipping:</label>
+                                        {{orderDetail.statusShip}}
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Total Price: </label>
+                                        <p class="class=bmd-label-floating font-weight-bold">
+                                            ${{orderDetail.totalPrice}}
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    {{!-- data-toggle="modal" data-target="#modelId" --}}
+                                    <form action="/user/deleteOrder/{{orderDetail.id}}" method="POST">
+
+                                        {{!-- <input type="text" class="form-control" name="proId" id="proId"
+                                            value="{{orderDetail.id}}" hidden="false"> --}}
+                                        <input type="text" class="form-control" name="numberOrder" id="numberOrder"
+                                            value="{{orderDetail.numberOrder}}" hidden="false">
+                                        <button type="submit" class="btn btn-danger pull-right">Delete</button>
+                                    </form>
+
+                                    <a name="" id="" class="btn btn-secondary pull-right" style="margin-right:10px;"
+                                        href="/user/profile" role="button">Back to
+                                        Profile</a>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{{>footer}}
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Body
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+</div>

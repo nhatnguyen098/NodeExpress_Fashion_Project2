@@ -10,8 +10,6 @@
                             <p class="card-category">Complete your profile</p>
                         </div>
                         <div class="card-body">
-    
-                        
                             <form action="/user/update/{{users.email}}" method="post">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -33,10 +31,10 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Birthday</label>
-                                          
+
                                             <input value="{{birthday}}" type="date" id="birthday" name="birthday"
                                                 class="form-control">
-                                                
+
                                         </div>
                                     </div>
 
@@ -52,8 +50,8 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label class="bmd-label-floating">Phone Number</label>
-                                            <input value="{{users.phoneNum}}" type="number" id="phoneNum" name="phoneNum"
-                                                class="form-control">
+                                            <input value="{{users.phoneNum}}" type="number" id="phoneNum"
+                                                name="phoneNum" class="form-control">
                                         </div>
                                     </div>
 
@@ -79,29 +77,41 @@
                                         </div>
                                     </div>
                                 </div>
-                                <button type="submit"  class="btn btn-danger pull-right">Update Profile</button>
+                                <button type="submit" class="btn btn-danger pull-right">Update Profile</button>
                                 <div class="clearfix"></div>
                             </form>
-                         
+
                         </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="card card-profile">
                         <div class="card-body">
-                            {{!-- <h6 class="card-category text-gray">OrderList</h6> --}}
                             <h4 class="card-title" style="padding-bottom: 10px">Order List</h4>
                             <p class="card-description">
                                 {{#each orderList}}
-                                <ul class="list-group" style="padding-bottom: 10px">
-                                    <li class="list-group-item">{{this.orderInfo.orderDate}}
-                                        <a href="/{{this._id}}" class="btn btn-danger pull-right">Detail</a>
-                                    </li>
-
-                                </ul>
+                                {{!-- {{this._id}} --}}
+                                <form action="/user/viewDetail" method="post">
+                                    <div class="row">
+                                        <div class="form-group col-4" style="padding-top:5px">
+                                            <label>Order date:</label>
+                                        </div>
+                                        <div class="form-group col-6">
+                                            <input id="orderDate" name="orderDate" type="text" class="form-control"
+                                                value="{{this.orderInfo.orderDate}}" readonly="true">
+                                            <input id="numberOrder" name="numberOrder" type="text" class="form-control"
+                                                value="{{this.orderInfo.numberOrder}}" hidden="false">
+                                            <input id="pro_id" name="pro_id" type="text" class="form-control"
+                                                value="{{this.id}}" hidden="false">
+                                        </div>
+                                        <div class="form-group col-2">
+                                            <button type="submit" class="btn btn-danger pull-right">Detail</button>
+                                        </div>
+                                    </div>
+                                    {{!-- <input type="hidden" name="_csrf" value="{{csrfToken}}" /> --}}
+                                </form>
                                 {{/each}}
                             </p>
-
                         </div>
                     </div>
                 </div>
