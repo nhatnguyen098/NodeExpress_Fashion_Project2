@@ -60,7 +60,7 @@ router.post('/deleteOrder/:id', async (req, res) => {
     'orderList.numberOrder': Number(req.body.numberOrder)
   }, {
     "$set": {
-      'orderList.$.status': false,
+      'orderList.$.status': -1,
     }
   }, {
     upsert: true,
@@ -88,7 +88,7 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
     for (var i = 0; i < docs.length; i++) {
       for (var s = docs[i].orderList.length - 1; s >= 0; s--) {
         if (docs[i].orderList[s].userInfo) {
-          if (docs[i].orderList[s].userInfo.email == user.email && docs[i].orderList[s].status == true) {
+          if (docs[i].orderList[s].userInfo.email == user.email && docs[i].orderList[s].status == 0) {
             docs[i].orderList[s].orderDate = docs[i].orderList[s].orderDate.toISOString().slice(0, 10)
             var objOrder = {
               'id': docs[i]._id,

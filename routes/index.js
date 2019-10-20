@@ -245,7 +245,7 @@ router.post('/add-order', async function (req, res, next) {
         "city": req.body.city,
         "country": req.body.country
       },
-      "status": true,
+      "status": 0,
       "numberOrder": NumberOrder
     }
     await Product.findOneAndUpdate({
