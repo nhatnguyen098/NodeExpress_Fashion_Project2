@@ -8,7 +8,7 @@ let sizes = 8;
 router.get('/product-more', async (req, res) => {
     sizes = await (sizes + 4)
     Product.find(async (err, docs) => {
-        if (sizes > docs.length) {
+        if (sizes >= docs.length) {
             sizes = docs.length
             var hidenMore = true;
         }
@@ -16,15 +16,34 @@ router.get('/product-more', async (req, res) => {
         var productChunks = [];
         productChunks = await paginate(1, sizes)
         await res.render('product/productList', {
-            title: 'Shopping Cart',
             products: productChunks,
             hidenMore: hidenMore
         });
 
     })
-
 })
 
+router.post('/product-search', async (req, res) => {
+    Product.find({
+        'title': {
+            '$regex': req.body.search,
+            '$options': 'i'
+        }
+    }, (err, docs) => {
+        var productChunks = [];
+        var chunkSize = docs.length;
+        for (var i = 0; i < docs.length; i += chunkSize) {
+            productChunks.push(docs.slice(i, i + chunkSize))
+        }
+        res.render('product/productList', {
+            products: productChunks
+        })
+    })
+})
+
+router.post('/filterPrice', (req,res)=>{
+
+})
 
 
 router.get('/detail/:id', (req, res, next) => {
@@ -93,7 +112,7 @@ router.post('/review-product/:id', async (req, res) => {
                 })
             }
         }
-        if(updPro == undefined){
+        if (updPro == undefined) {
             Product.findOneAndUpdate({
                 _id: id
             }, {
@@ -104,7 +123,7 @@ router.post('/review-product/:id', async (req, res) => {
                 upsert: true,
                 new: true
             }, async (err, doc) => {
-    
+
             })
         }
     })

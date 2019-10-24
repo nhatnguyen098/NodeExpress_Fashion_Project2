@@ -18,24 +18,31 @@ router.get('/', async function (req, res, next) {
   var size = 8;
   productChunks = await paginate(1, size)
   await res.render('pages/index', {
-    title: 'Shopping Cart',
     products: productChunks
   });
 });
 
 
 
-router.get('/product-search', async (req, res) => {
-  console.log(req.query.search)
+router.post('/product-search', async (req, res) => {
+  console.log(req.body.search)
   Product.find({
-    'title': req.query.search
+    'title': {
+      '$regex': req.body.search,
+      '$options': 'i'
+    }
   }, (err, docs) => {
-    console.log(docs)
-    res.render('pages/product', {
-      products: docs
+    var productChunks = [];
+    var chunkSize = docs.length;
+    for (var i = 0; i < docs.length; i += chunkSize) {
+      productChunks.push(docs.slice(i, i + chunkSize))
+    }
+    res.render('pages/index', {
+      products: productChunks
     })
   })
-
 })
 
-module.exports = router;
+
+
+module.exports = router
