@@ -5,7 +5,7 @@ var User = require('../models/user')
 var csrf = require('csurf');
 var passport = require('passport')
 var csurfProtection = csrf();
-var mongoose = require('mongoose');
+var checkAuthen = require('../config/checkAuthenticate')
 
 
 router.post('/update/:email', (req, res) => {
@@ -28,7 +28,7 @@ router.post('/update/:email', (req, res) => {
   })
 })
 
-router.post('/viewDetail', isLoggedIn, (req, res) => {
+router.post('/viewDetail',checkAuthen.isLoggedIn, (req, res) => {
 
   Product.findOne({
     '_id': req.body.pro_id
@@ -52,8 +52,6 @@ router.post('/viewDetail', isLoggedIn, (req, res) => {
 })
 
 router.post('/deleteOrder/:id', async (req, res) => {
-  // console.log(req.params.id)
-  // console.log(req.body.numberOrder)
 
   var updPro = await Product.findOneAndUpdate({
     '_id': req.params.id,
@@ -81,7 +79,7 @@ router.use(csurfProtection);
 
 
 
-router.get('/profile', isLoggedIn, function (req, res, next) {
+router.get('/profile', checkAuthen.isLoggedIn, function (req, res, next) {
   var user = req.session.user
   var arr = [];
   Product.find(async (err, docs) => {
@@ -116,13 +114,13 @@ router.get('/profile', isLoggedIn, function (req, res, next) {
 
 })
 
-router.get('/logout', isLoggedIn, function (req, res, next) {
+router.get('/logout', checkAuthen.isLoggedIn, function (req, res, next) {
   req.logOut();
   req.session.user = null;
   res.redirect('/');
 })
 
-router.use('/', notLoggedIn, function (req, res, next) {
+router.use('/', checkAuthen.notLoggedIn, function (req, res, next) {
   next();
 })
 
@@ -163,6 +161,7 @@ router.post('/signin', passport.authenticate('local.signin', {
 }), function (req, res, next) {
   if (req.session.oldUrl) {
     var oldUrl = req.session.oldUrl;
+    console.log(oldUrl)
     req.session.oldUrl = null;
     res.redirect(oldUrl);
   } else {

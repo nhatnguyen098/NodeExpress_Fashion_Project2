@@ -30,7 +30,7 @@
 
                 <!-- Logo desktop -->
                 <a href="/" class="logo">
-                    <img src="../images/icons/logo-01.png" alt="IMG-LOGO">
+                    <img src="../../images/icons/logo-01.png" alt="IMG-LOGO">
                 </a>
 
                 <!-- Menu desktop -->
@@ -41,19 +41,19 @@
                         </li>
 
                         <li class="label1" data-label1="hot">
-                            <a href="/product/1">Shop</a>
+                            <a href="/product/product-more">Shop</a>
                         </li>
 
                         <li>
-                            <a href="/shopping-cart">Features</a>
+                            <a href="/cart/shopping-cart">Features</a>
                         </li>
 
                         <li>
-                            <a href="/about">About</a>
+                            <a href="/contact/about">About</a>
                         </li>
 
                         <li>
-                            <a href="/contact">Contact</a>
+                            <a href="/contact/view">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -78,12 +78,19 @@
                     <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 js-show-modal-search">
                         <i class="zmdi zmdi-search"></i>
                     </div>
-
-                    <a href="/shopping-cart/"
+                    {{#if session.cart.totalQty}}
+                    <a href="/cart/shopping-cart/"
                         class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
-                        data-notify="0{{session.cart.totalQty}}">
+                        data-notify="{{session.cart.totalQty}}">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </a>
+                    {{else}}
+                    <a href="/cart/shopping-cart/"
+                        class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti"
+                        data-notify="0">
+                        <i class="zmdi zmdi-shopping-cart"></i>
+                    </a>
+                    {{/if}}
                 </div>
             </nav>
         </div>
@@ -93,7 +100,7 @@
     <div class="wrap-header-mobile">
         <!-- Logo moblie -->
         <div class="logo-mobile">
-            <a href="index.html"><img src="../images/icons/logo-01.png" alt="IMG-LOGO"></a>
+            <a href="/"><img src="../../images/icons/logo-01.png" alt="IMG-LOGO"></a>
         </div>
 
         <!-- Icon header -->
@@ -199,7 +206,7 @@
     <div class="modal-search-header flex-c-m trans-04 js-hide-modal-search">
         <div class="container-search-header">
             <button class="flex-c-m btn-hide-modal-search trans-04 js-hide-modal-search">
-                <img src="../images/icons/icon-close2.png" alt="CLOSE">
+                <img src="../../images/icons/icon-close2.png" alt="CLOSE">
             </button>
 
             <form action="/product-search" method="get" class="wrap-search-header flex-w p-l-15">

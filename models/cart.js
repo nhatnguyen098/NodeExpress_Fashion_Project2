@@ -2,12 +2,18 @@ module.exports = function Cart(oldCart) {
     this.items = oldCart.items || {};
     this.totalQty = oldCart.totalQty || 0;
     this.totalPrice = oldCart.totalPrice || 0;
-    this.coupons = oldCart.coupons || {description: 0};
+    this.coupons = oldCart.coupons || {
+        description: 0
+    };
     this.totalDiscount = oldCart.totalDiscount || this.totalPrice;
     this.add = function (item, id, quantity) {
         var storedItem = this.items[id];
         if (!storedItem) {
-            storedItem = this.items[id] = { item: item, qty: 0, price: 0 };
+            storedItem = this.items[id] = {
+                item: item,
+                qty: 0,
+                price: 0
+            };
             this.totalQty++;
         }
         // storedItem.qty++;
@@ -24,9 +30,19 @@ module.exports = function Cart(oldCart) {
         return arr;
     }
     this.removeItem = function (id) {
-        // this.totalQty -= this.items[id].qty;
+        //this.totalQty -= this.items[id].qty;
         this.totalQty--;
         this.totalPrice -= parseInt(this.items[id].price);
         delete this.items[id];
+
+    }
+    this.reduceByOne = function (id) {
+        this.items[id].qty--;
+        this.items[id].price -= this.items[id].item.price
+        this.totalPrice -= this.items[id].item.price
+        if (this.items[id].qty <= 0) {
+            this.totalQty--;
+            delete this.items[id]
+        }
     }
 }

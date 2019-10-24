@@ -11,11 +11,11 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var validator = require('express-validator');
 var bodyParser = require('body-parser')
-
-
-
+var productRouter = require('./routes/product')
+var cartRouter = require('./routes/cart')
+var orderRouter = require('./routes/order')
 var indexRouter = require('./routes/index');
-
+var contactRouter = require('./routes/contact')
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/shopping',{ useNewUrlParser: true });
@@ -37,6 +37,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use(function(req,res,next){
   res.locals.login = req.isAuthenticated();
   res.locals.session = req.session;
@@ -44,6 +46,10 @@ app.use(function(req,res,next){
 })
 
 app.use('/user',userRouter)
+app.use('/product',productRouter)
+app.use('/cart',cartRouter)
+app.use('/order',orderRouter)
+app.use('/contact',contactRouter)
 app.use('/', indexRouter);
 
 

@@ -33,12 +33,12 @@
                         <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                         <div class="slick3 gallery-lb">
-                            <div class="item-slick3" data-thumb="../images/{{this.imagePath}}">
+                            <div class="item-slick3" data-thumb="../../images/{{this.imagePath}}">
                                 <div class="wrap-pic-w pos-relative">
-                                    <img src="../images/{{this.imagePath}}" alt="IMG-PRODUCT">
+                                    <img src="../../images/{{this.imagePath}}" alt="IMG-PRODUCT">
 
                                     <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                        href="../images/{{this.imagePath}}">
+                                        href="../../images/{{this.imagePath}}">
                                         <i class="fa fa-expand"></i>
                                     </a>
                                 </div>
@@ -64,7 +64,7 @@
 
                     <!--  -->
                     <div class="p-t-33">
-                        <form action="/add-to-cart/{{this._id}}" method="post">
+                        <form action="/cart/add-to-cart/{{this._id}}" method="post">
                             <div class="flex-w flex-r-m p-b-10 form-group">
                                 <div class="size-203 flex-c-m respon6">
                                     Size
@@ -261,7 +261,7 @@
                                     {{#proDetail}}
                                     <div class="flex-w flex-t p-b-68">
                                         <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                            <img src="../images/{{this.imagePath}}" alt="AVATAR">
+                                            <img src="../../images/{{this.imagePath}}" alt="AVATAR">
                                         </div>
                                         <div class="size-207">
                                             <div class="flex-w flex-sb-m p-b-17">
@@ -279,7 +279,7 @@
                                     {{#each this.reviews}}
                                     <div class="flex-w flex-t p-b-68">
                                         <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                            <img src="../images/avatar-01.jpg" alt="AVATAR">
+                                            <img src="../../images/avatar-01.jpg" alt="AVATAR">
                                         </div>
 
                                         <div class="size-207">
@@ -307,7 +307,7 @@
                                     {{/proDetail}}
                                     <!-- Add review -->
                                     {{# if checkAcc}}
-                                    <form class="w-full" action="/review-product/{{proDetail._id}}" method="post">
+                                    <form class="w-full" action="/product/review-product/{{proDetail._id}}" method="post">
                                         <h5 class="mtext-108 cl2 p-b-7">
                                             Add a review - {{msg}}
                                         </h5>
@@ -395,9 +395,9 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
-                            <img src="../images/{{this.imagePath}}" alt="IMG-PRODUCT">
+                            <img src="../../images/{{this.imagePath}}" alt="IMG-PRODUCT">
 
-                            <a href="/detail/{{this._id}}"
+                            <a href="/product/detail/{{this._id}}"
                                 class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                 Quick View
                             </a>
@@ -405,7 +405,7 @@
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="/detail/{{this._id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                <a href="/product/detail/{{this._id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                     Name: {{this.title}}
                                 </a>
 
@@ -416,10 +416,10 @@
 
                             <div class="block2-txt-child2 flex-r p-t-3">
                                 <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="../images/icons/icon-heart-01.png"
+                                    <img class="icon-heart1 dis-block trans-04" src="../../images/icons/icon-heart-01.png"
                                         alt="ICON">
                                     <img class="icon-heart2 dis-block trans-04 ab-t-l"
-                                        src="../images/icons/icon-heart-02.png" alt="ICON">
+                                        src="../../images/icons/icon-heart-02.png" alt="ICON">
                                 </a>
                             </div>
                         </div>

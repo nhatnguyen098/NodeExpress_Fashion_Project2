@@ -36,7 +36,7 @@
 							<tr class="table_row">
 								<td class="column-1">
 									<div class="how-itemcart1">
-										<img src="../images/{{this.item.imagePath}}" alt="IMG">
+										<img src="/images/{{this.item.imagePath}}" alt="IMG">
 									</div>
 								</td>
 								<td class="column-2">{{this.item.title}}</td>
@@ -45,10 +45,21 @@
 									{{this.qty}}
 								</td>
 								<td class="column-5">{{this.price}}</td>
-								<td class="column-5"><a href="/remove/{{this.item._id}}" role="button"
+								<td class="column-5" style="padding-bottom:30px;">
+									{{!-- <a href="/cart/remove/{{this.item._id}}" role="button"
 										class="btn btn-outline-danger" aria-pressed="true">
 										X
-									</a>
+									</a> --}}
+									<div class="dropdown">
+										<button type="button" class="btn btn-danger dropdown-toggle"
+											data-toggle="dropdown">
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</button>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="/cart/reduceByOne/{{this.item._id}}">Reduce by 1</a>
+											<a class="dropdown-item" href="/cart/removeAll/{{this.item._id}}">Remove all</a>
+										</div>
+									</div>
 								</td>
 							</tr>
 							{{/each}}
@@ -56,7 +67,7 @@
 					</div>
 
 					<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-						<form action="/shopping-cart" method="post">
+						<form action="/cart/shopping-cart" method="post">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
 								<input id="couponCode" name="couponCode"
 									class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text"
@@ -68,7 +79,7 @@
 							</div>
 
 						</form>
-						<a href="/product/1"
+						<a href="/product/product-more"
 							class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
 							Continue shopping
 						</a>
@@ -157,7 +168,7 @@
 						</div>
 					</div>
 
-					<a href="/check-out"
+					<a href="/order/check-out"
 						class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
 						Proceed to Checkout
 					</a>
