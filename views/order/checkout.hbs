@@ -28,8 +28,8 @@
     <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <p class="breadcrumbs"><span class="mr-2"><a href="/">Home</a></span> <span>Checkout</span></p>
-                <h1 class="mb-0 bread">Checkout</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a href="/">{{__ "Home"}}</a></span> <span>{{__ "Checkout"}}</span></p>
+                <h1 class="mb-0 bread">{{__ "Checkout"}}</h1>
             </div>
         </div>
     </div>
@@ -40,25 +40,19 @@
         <div class="row justify-content-center">
             <div class="col-xl-10 ftco-animate">
                 <form action="/order/add-order" method="POST" class="billing-form">
-                    <h3 class="mb-4 billing-heading">Billing Details</h3>
+                    <h3 class="mb-4 billing-heading">{{__ "Billing Details"}}</h3>
                     {{#infoUser}}
                     <div class="row align-items-end">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Full Name (Mr/Mrs):</label>
+                                <label>{{__ "Full Name"}} ({{__ "Mr/Mrs"}}):</label>
                                 <h4>{{this.fullName}}</h4>
                             </div>
                         </div>
-                        {{!-- <div class="col-md-6">
-                            <div class="form-group">
-                                <label for="lastname">Address</label>
-                                <input type="text" id="address" name="address" class="form-control" placeholder="">
-                            </div>
-                        </div> --}}
                         <div class="w-100"></div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="country">State / Country</label>
+                                <label for="country">{{__ "Country"}}</label>
                                 <div class="select-wrap">
                                     <div class="icon"><span class="ion-ios-arrow-down"></span></div>
                                     <select name="country" id="country" class="form-control" required>
@@ -121,11 +115,11 @@
                         {{#if products}}
                         <div class="col-md-6">
                             <div class="cart-detail bg-light p-3 p-md-4">
-                                <h3 class="billing-heading mb-4">Information cart</h3>
+                                <h3 class="billing-heading mb-4">{{__ "Information cart"}}</h3>
                                 <div class="row" style="padding-bottom: 15px">
-                                    <div class="col-4" style="padding-left: 30px">Name</div>
-                                    <div class="col-4" style="padding-left: 65px">Quantity</div>
-                                    <div class="col-4" style="padding-left: 30px">Total Price ($)</div>
+                                    <div class="col-4" style="padding-left: 30px">{{__ "Product"}}</div>
+                                    <div class="col-4" style="padding-left: 65px">{{__ "Quantity"}}</div>
+                                    <div class="col-4" style="padding-left: 30px">{{__ "Total Price"}} ($)</div>
                                 </div>
                                 {{#each products}}
                                 <div class="form-group">
@@ -153,29 +147,29 @@
 
                         <div class="col-md-6 d-flex">
                             <div class="cart-detail cart-total bg-light p-3 p-md-4">
-                                <h3 class="billing-heading mb-4">Cart Total</h3>
+                                <h3 class="billing-heading mb-4">{{__ "Cart Total"}}</h3>
                                 <p class="d-flex">
-                                    <span>Subtotal</span>
+                                    <span>{{__ "Subtotal"}}</span>
                                     <span>${{total}}.00</span>
                                 </p>
                                 <p class="d-flex">
-                                    <span>Delivery</span>
+                                    <span>{{__ "Delivery"}}</span>
                                     <span>$0.00</span>
                                 </p>
                                 <p class="d-flex">
-                                    <span>Discount</span>
+                                    <span>{{__ "Discount"}}</span>
                                     <span> {{discount}}</span>
                                 </p>
                                 <hr>
                                 <p class="d-flex total-price">
-                                    <span>Total</span>
+                                    <span>{{__ "Total"}}</span>
                                     {{#if totalDiscount}}
                                     <span>${{totalDiscount}}</span>
                                     {{else}}
                                     <span>${{total}}.00</span>
                                     {{/if}}
                                 </p>
-                                <p><button type="submit" class="btn btn-primary py-3 px-4">Place an order</button></p>
+                                <p><button type="submit" class="btn btn-primary py-3 px-4">{{__ "Place an order"}}</button></p>
                             </div>
                         </div>
                     </div>

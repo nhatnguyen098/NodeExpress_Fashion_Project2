@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Product = require('../models/product')
 var paginate = require('../config/paginate')
-let sizes = 8;
+var sizes = 8;
 /* GET home page. */
 
 router.get('/product-more', async (req, res) => {
@@ -12,7 +12,6 @@ router.get('/product-more', async (req, res) => {
             sizes = docs.length
             var hidenMore = true;
         }
-
         var productChunks = [];
         productChunks = await paginate(1, sizes)
         await res.render('product/productList', {
@@ -41,7 +40,7 @@ router.post('/product-search', async (req, res) => {
     })
 })
 
-router.post('/filterPrice', (req,res)=>{
+router.post('/filterPrice', (req, res) => {
 
 })
 

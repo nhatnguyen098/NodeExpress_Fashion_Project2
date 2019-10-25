@@ -5,7 +5,7 @@
 <div class="wrapper" style="background-image: url('/images/bg-registration-form-2.jpg');">
     <div class="inner">
         <form action="/user/signup" method="post">
-            <h3>Registration Form</h3>
+            <h3>{{__ "Registration Form"}}</h3>
             {{#if hasErrors}}
             <div class="alert alert-danger">
                 {{#each messages}}
@@ -15,28 +15,28 @@
             {{/if}}
             <div class="form-group">
                 <div class="form-wrapper">
-                    <label for="">Full Name</label>
+                    <label for="">{{__ "Full Name"}}</label>
                     <input type="text" class="form-control" id="fullName" name="fullName">
                 </div>
                 <div class="form-wrapper">
-                    <label for="">Phone Number</label>
+                    <label for="">{{__ "Phone Number"}}</label>
                     <input type="number" class="form-control" placeholder="+" id="phoneNum" name="phoneNum" min="0">
                 </div>
             </div>
             <div class="form-wrapper">
-                <label for="">Email</label>
+                <label for="">{{__ "Email"}}</label>
                 <input type="text" class="form-control" name="email" id="email">
             </div>
             <div class="form-wrapper">
-                <label for="">Password</label>
+                <label for="">{{__ "Password"}}</label>
                 <input type="password" class="form-control" name="password" id="password">
             </div>
             <div class="form-wrapper">
-                <label for="">Confirm Password</label>
+                <label for="">{{__ "Confirm Password"}}</label>
                 <input type="password" class="form-control" id="confirmPass" name="confirmPass">
             </div>
             <input type="hidden" name="_csrf" value="{{csrfToken}}" />
-            <button type="submit">Register Now</button>
+            <button type="submit">{{__ "Register Now"}}</button>
         </form>
     </div>
 </div>

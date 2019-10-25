@@ -13,23 +13,23 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="/">{{{__ "Home"}}}</a>
                         </li>
 
                         <li class="label1" data-label1="hot">
-                            <a href="/product/product-more">Shop</a>
+                            <a href="/product/product-more">{{{__ "Shop"}}}</a>
                         </li>
 
                         <li>
-                            <a href="/cart/shopping-cart">Features</a>
+                            <a href="/cart/shopping-cart">{{{__ "Features"}}}</a>
                         </li>
 
                         <li>
-                            <a href="/contact/about">About</a>
+                            <a href="/contact/about">{{{__ "About"}}}</a>
                         </li>
 
                         <li>
-                            <a href="/contact/view">Contact</a>
+                            <a href="/contact/view">{{{__ "Contact"}}}</a>
                         </li>
                     </ul>
                 </div>
@@ -45,14 +45,14 @@
                                 <div class="dropdown-menu" aria-labelledby="dropdownId">
                                     {{#if login}}
                                     <a class="dropdown-item" href="/user/profile"><i class="fa fa-user-circle"
-                                            aria-hidden="true"></i> User Account</a>
+                                            aria-hidden="true"></i> {{{__ "User Account"}}}</a>
                                     <a class="dropdown-item" href="/user/logout"><i class="fa fa-sign-out"
-                                            aria-hidden="true"></i> Sign Out</a>
+                                            aria-hidden="true"></i> {{{__ "Sign Out"}}}</a>
                                     {{else}}
                                     <a class="dropdown-item" href="/user/signin"><i class="fa fa-sign-in"
-                                            aria-hidden="true"></i> Sign In</a>
+                                            aria-hidden="true"></i> {{{__ "Sign In"}}} </a>
                                     <a class="dropdown-item" href="/user/signup"><i class="fa fa-user-plus"
-                                            aria-hidden="true"></i> Sign Up</a>
+                                            aria-hidden="true"></i> {{{__ "Sign Up"}}}</a>
                                     {{/if}}
                                 </div>
                             </li>
@@ -175,39 +175,39 @@
             <ul class="sidebar-link w-full">
                 <li class="p-b-13">
                     <a href="/" class="stext-102 cl2 hov-cl1 trans-04">
-                        Home
+                        {{__ "Home"}}
                     </a>
                 </li>
 
 
                 <li class="p-b-13">
                     <a href="/user/signin" class="stext-102 cl2 hov-cl1 trans-04">
-                        My Account
+                        {{__ "My Account"}}
+                    </a>
+                </li>
+
+                <li class="p-b-13">
+                    <a href="/en" class="stext-102 cl2 hov-cl1 trans-04">
+                        EN
+                    </a>
+                </li>
+
+                <li class="p-b-13">
+                    <a href="/vn" class="stext-102 cl2 hov-cl1 trans-04">
+                        VN
                     </a>
                 </li>
 
                 <li class="p-b-13">
                     <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-                        Track Oder
-                    </a>
-                </li>
-
-                <li class="p-b-13">
-                    <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-                        Refunds
-                    </a>
-                </li>
-
-                <li class="p-b-13">
-                    <a href="#" class="stext-102 cl2 hov-cl1 trans-04">
-                        Help & FAQs
+                        {{__ "Help & FAQs"}}
                     </a>
                 </li>
             </ul>
 
             <div class="sidebar-gallery w-full p-tb-30">
                 <span class="mtext-101 cl5">
-                    @ CozaStore
+                    @ {{__ "CozaStore"}}
                 </span>
 
                 <div class="flex-w flex-sb p-t-36 gallery-lb">
@@ -269,7 +269,7 @@
 
             <div class="sidebar-gallery w-full">
                 <span class="mtext-101 cl5">
-                    About Us
+                    {{__ "About Us"}}
                 </span>
 
                 <p class="stext-108 cl6 p-t-27">
@@ -292,20 +292,20 @@
                     <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
                         <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
                             <span class="ltext-202 txt-center cl0 respon2">
-                                Women Collection 2019
+                                {{__ "Women Collection 2019"}}
                             </span>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
                             <h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-                                New arrivals
+                                {{__ "New arrivals"}}
                             </h2>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
                             <a href="/product/1"
                                 class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                                Shop Now
+                                {{__ "Shop Now"}}
                             </a>
                         </div>
                     </div>
@@ -318,20 +318,20 @@
                     <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
                         <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
                             <span class="ltext-202 txt-center cl0 respon2">
-                                Men New-Season
+                                {{__ "Men New-Season"}}
                             </span>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn" data-delay="800">
                             <h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-                                Jackets & Coats
+                                {{__ "Jackets & Coats"}}
                             </h2>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="slideInUp" data-delay="1600">
                             <a href="/product/1"
                                 class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                                Shop Now
+                                {{__ "Shop Now"}}
                             </a>
                         </div>
                     </div>
@@ -344,20 +344,20 @@
                     <div class="flex-col-c-m h-full p-t-100 p-b-60 respon5">
                         <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft" data-delay="0">
                             <span class="ltext-202 txt-center cl0 respon2">
-                                Men Collection 2019
+                                {{__ "Men Collection 2019"}}
                             </span>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight" data-delay="800">
                             <h2 class="ltext-104 txt-center cl0 p-t-22 p-b-40 respon1">
-                                NEW SEASON
+                                {{__ "NEW SEASON"}}
                             </h2>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="rotateIn" data-delay="1600">
                             <a href="/product/product-more"
                                 class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                                Shop Now
+                                {{__ "Shop Now"}}
                             </a>
                         </div>
                     </div>
@@ -370,20 +370,20 @@
                     <div class="flex-col-l-m h-full p-t-100 p-b-30 respon5">
                         <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
                             <span class="ltext-101 cl2 respon2">
-                                Women Collection 2019
+                                {{__ "Women Collection 2019"}}
                             </span>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="fadeInUp" data-delay="800">
                             <h2 class="ltext-201 cl2 p-t-19 p-b-43 respon1">
-                                NEW SEASON
+                                {{__ "NEW SEASON"}}
                             </h2>
                         </div>
 
                         <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
                             <a href="/product/product-more"
                                 class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                Shop Now
+                                {{__ "Shop Now"}}
                             </a>
                         </div>
                     </div>
@@ -410,17 +410,17 @@
                         class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
-                                Women
+                                {{__ "Women"}}
                             </span>
 
                             <span class="block1-info stext-102 trans-04">
-                                New Trend
+                                {{__ "New Trend"}}
                             </span>
                         </div>
 
                         <div class="block1-txt-child2 p-b-4 trans-05">
                             <div class="block1-link stext-101 cl0 trans-09">
-                                Shop Now
+                                {{__ "Shop Now"}}
                             </div>
                         </div>
                     </a>
@@ -436,17 +436,17 @@
                         class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
                             <span class="block1-name ltext-102 trans-04 p-b-8">
-                                Men
+                                {{__ "Men"}}
                             </span>
 
                             <span class="block1-info stext-102 trans-04">
-                                New Trend
+                                {{__ "New Trend"}}
                             </span>
                         </div>
 
                         <div class="block1-txt-child2 p-b-4 trans-05">
                             <div class="block1-link stext-101 cl0 trans-09">
-                                Shop Now
+                                {{__ "Shop Now"}}
                             </div>
                         </div>
                     </a>
@@ -462,34 +462,34 @@
     <div class="container">
         <div class="p-b-10">
             <h3 class="ltext-103 cl5">
-                TOP Products
+                {{__ "TOP Products"}}
             </h3>
         </div>
 
         <div class="flex-w flex-sb-m p-b-52">
             <div class="flex-w flex-l-m filter-tope-group m-tb-10">
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-                    All Products
+                    {{__ "All Products"}}
                 </button>
 
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-                    Women
+                    {{__ "Women"}}
                 </button>
 
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-                    Men
+                    {{__ "Men"}}
                 </button>
 
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-                    Bag
+                    {{__ "Bag"}}
                 </button>
 
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".shoes">
-                    Shoes
+                    {{__ "Shoes"}}
                 </button>
 
                 <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".watches">
-                    Watches
+                    {{__ "Watches"}}
                 </button>
             </div>
 
@@ -497,13 +497,13 @@
                 <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
                     <i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
                     <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                    Filter
+                    {{__ "Filter"}}
                 </div>
 
                 <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
                     <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
                     <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                    Search
+                    {{__ "Search"}}
                 </div>
             </div>
 
@@ -728,7 +728,7 @@
                         {{!-- js-show-modal1 into class --}}
                         <a href="/product/detail/{{this._id}}"
                             class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 ">
-                            Quick View
+                            {{__ "Quick View"}}
                         </a>
                     </div>
 
@@ -740,7 +740,7 @@
                             </a>
 
                             <span class="stext-105 cl3">
-                                Price: $ {{this.price}}
+                                $ {{this.price}}
                             </span>
                         </div>
 
@@ -761,7 +761,7 @@
         <!-- Load more -->
         <div class="flex-c-m flex-w w-full p-t-45">
             <a href="/product/product-more" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                Load More
+                {{__ "Load More"}}
             </a>
         </div>
     </div>

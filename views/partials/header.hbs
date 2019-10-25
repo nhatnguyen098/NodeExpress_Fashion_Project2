@@ -6,20 +6,20 @@
         <div class="top-bar">
             <div class="content-topbar flex-sb-m h-full container">
                 <div class="left-top-bar">
-                    Free shipping for standard order over $100
+                    {{__ "Free shipping for standard order over $100"}}
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
+                        {{__ "Help & FAQs"}}
                     </a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                    <a href="/en" class="flex-c-m trans-04 p-lr-25">
                         EN
                     </a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
+                    <a href="/vn" class="flex-c-m trans-04 p-lr-25">
+                        VN
                     </a>
                 </div>
             </div>
@@ -37,23 +37,23 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li>
-                            <a href="/">Home</a>
+                            <a href="/">{{__ "Home"}}</a>
                         </li>
 
                         <li class="label1" data-label1="hot">
-                            <a href="/product/product-more">Shop</a>
+                            <a href="/product/product-more">{{__ "Shop"}}</a>
                         </li>
 
                         <li>
-                            <a href="/cart/shopping-cart">Features</a>
+                            <a href="/cart/shopping-cart">{{__ "Features"}}</a>
                         </li>
 
                         <li>
-                            <a href="/contact/about">About</a>
+                            <a href="/contact/about">{{__ "About"}}</a>
                         </li>
 
                         <li>
-                            <a href="/contact/view">Contact</a>
+                            <a href="/contact/view">{{__ "Contact"}}</a>
                         </li>
                     </ul>
                 </div>
@@ -66,11 +66,11 @@
                                 aria-haspopup="true" aria-expanded="false"><i class="fa fa-user fa-2x" aria-hidden="true"></i></a>
                             <div class="dropdown-menu" aria-labelledby="dropdownId">
                                 {{#if login}}
-                                <a class="dropdown-item" href="/user/profile"><i class="fa fa-user-circle" aria-hidden="true"></i> User Account</a>
-                                <a class="dropdown-item" href="/user/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a>
+                                <a class="dropdown-item" href="/user/profile"><i class="fa fa-user-circle" aria-hidden="true"></i> {{__ "User Account"}}</a>
+                                <a class="dropdown-item" href="/user/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> {{__ "Sign Out"}}</a>
                                 {{else}}
-                                <a class="dropdown-item" href="/user/signin"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a>
-                                <a class="dropdown-item" href="/user/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign Up</a>
+                                <a class="dropdown-item" href="/user/signin"><i class="fa fa-sign-in" aria-hidden="true"></i> {{__ "Sign In"}}</a>
+                                <a class="dropdown-item" href="/user/signup"><i class="fa fa-user-plus" aria-hidden="true"></i> {{__ "Sign Up"}}</a>
                                 {{/if}}
                             </div>
                         </li>

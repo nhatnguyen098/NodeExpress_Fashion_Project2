@@ -5,17 +5,17 @@
 <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
         <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
-            Home
+            {{__ "Home"}}
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
-        <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
-            Clothes
+        <a href="/product/product-more" class="stext-109 cl8 hov-cl1 trans-04">
+            {{__ "Clothes"}}
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
         <span class="stext-109 cl4">
-            Lightweight Jacket
+            {{proDetail.title}}
         </span>
     </div>
 </div>
@@ -47,7 +47,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="col-md-6 col-lg-5 p-b-30">
                 <div class="p-r-50 p-t-5 p-lr-0-lg">
                     <h4 class="mtext-105 cl2 js-name-detail p-b-14">
@@ -67,13 +66,13 @@
                         <form action="/cart/add-to-cart/{{this._id}}" method="post">
                             <div class="flex-w flex-r-m p-b-10 form-group">
                                 <div class="size-203 flex-c-m respon6">
-                                    Size
+                                    {{{__ "Size"}}}
                                 </div>
 
                                 <div class="size-204 respon6-next">
                                     <div class="rs1-select2 bor8 bg0">
                                         <select class="js-select2 form-control" id="size" name="size">
-                                            <option value="0">Choose an option</option>
+                                            <option value="0">{{__ "Choose an option"}}</option>
                                             <option value="1">Size S</option>
                                             <option value="2">Size M</option>
                                             <option value="3">Size L</option>
@@ -121,7 +120,7 @@
                                     {{!-- js-addcart-detail --}}
                                     <button type="submit"
                                         class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                        Add to cart
+                                        {{__ "Add to cart"}}
                                     </button>
                                 </div>
                             </div>
@@ -163,15 +162,15 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item p-b-10">
-                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">{{__ "Description"}}</a>
                     </li>
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
+                        <a class="nav-link" data-toggle="tab" href="#information" role="tab">{{__ "Additional information"}}</a>
                     </li>
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews ({{reviewLength}})</a>
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">{{__ "Reviews"}} ({{reviewLength}})</a>
                     </li>
                 </ul>
 
@@ -307,7 +306,8 @@
                                     {{/proDetail}}
                                     <!-- Add review -->
                                     {{# if checkAcc}}
-                                    <form class="w-full" action="/product/review-product/{{proDetail._id}}" method="post">
+                                    <form class="w-full" action="/product/review-product/{{proDetail._id}}"
+                                        method="post">
                                         <h5 class="mtext-108 cl2 p-b-7">
                                             Add a review - {{msg}}
                                         </h5>
@@ -383,7 +383,7 @@
     <div class="container">
         <div class="p-b-45">
             <h3 class="ltext-106 cl5 txt-center">
-                Related Products
+                {{__ "Related Products"}}
             </h3>
         </div>
 
@@ -405,19 +405,20 @@
 
                         <div class="block2-txt flex-w flex-t p-t-14">
                             <div class="block2-txt-child1 flex-col-l ">
-                                <a href="/product/detail/{{this._id}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                    Name: {{this.title}}
+                                <a href="/product/detail/{{this._id}}"
+                                    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                    {{this.title}}
                                 </a>
 
                                 <span class="stext-105 cl3">
-                                    Price: $ {{this.price}}
+                                    $ {{this.price}}
                                 </span>
                             </div>
 
                             <div class="block2-txt-child2 flex-r p-t-3">
                                 <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="../../images/icons/icon-heart-01.png"
-                                        alt="ICON">
+                                    <img class="icon-heart1 dis-block trans-04"
+                                        src="../../images/icons/icon-heart-01.png" alt="ICON">
                                     <img class="icon-heart2 dis-block trans-04 ab-t-l"
                                         src="../../images/icons/icon-heart-02.png" alt="ICON">
                                 </a>
