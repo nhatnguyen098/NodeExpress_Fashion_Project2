@@ -40,7 +40,7 @@ router.post('/add-order', async function (req, res, next) {
   </tr>
   </thead>`;
   for (var i = 0; i < cartArr.length; i++) {
-    // var profit = 0;
+    var profit = 0;
     var NumberOrder = 0
     await Product.findById(cartArr[i].item._id, async function (err, docs) {
       if (err) {
@@ -49,8 +49,10 @@ router.post('/add-order', async function (req, res, next) {
       NumberOrder = await docs.orderList.length + 1;
       if (cart.coupons.description == 0) {
         docs.totalProfit += cartArr[i].price
+        profit = cartArr[i].price
       } else {
         docs.totalProfit += (cartArr[i].price - (cartArr[i].price * cart.coupons.discount))
+        profit = (cartArr[i].price - (cartArr[i].price * cart.coupons.discount))
       }
       if (cart.coupons._id) {
         Coupon.findOneAndUpdate({
@@ -62,18 +64,21 @@ router.post('/add-order', async function (req, res, next) {
         }, {
           upsert: true,
           new: true
-        }, (err, doc) => {})
+        }, (err, doc) => {
+
+        })
       }
-      Product.findOneAndUpdate({
-        _id: cartArr[i].item._id
-      }, {
-        $set: {
-          totalProfit: docs.totalProfit
-        }
-      }, {
-        upsert: true,
-        new: true
-      }, (err, doc) => {})
+      // totalProfit each product
+    //   Product.findOneAndUpdate({
+    //     _id: cartArr[i].item._id
+    //   }, {
+    //     $set: {
+    //       totalProfit: docs.totalProfit
+    //     }
+    //   }, {
+    //     upsert: true,
+    //     new: true
+    //   }, (err, doc) => {})
     })
 
 
@@ -82,7 +87,7 @@ router.post('/add-order', async function (req, res, next) {
       "totalQuantity": cartArr[i].qty,
       "totalPrice": cartArr[i].price,
       "couponCode": cart.coupons,
-      "totalHasDiscount": cart.totalDiscount,
+      "totalHasDiscount": profit, // change cart.totalDiscount
       "statusShip": "Not yet",
       "userInfo": {
         "name": user.fullName,
