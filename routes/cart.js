@@ -32,14 +32,22 @@ router.get('/shopping-cart', function (req, res, next) {
   var couponId = req.query.couponCode;
   Coupon.findOne({
     '_id': couponId,
-    'active': true
+    // 'active': true
   }, (err, doc) => {
-    if (doc) {
+    if (doc && doc.active == true) {
       req.session.cart.coupons = doc;
       cart.coupons = doc
       cart.totalDiscount = cart.totalPrice - (cart.totalPrice * doc.discount);
       req.session.cart.totalDiscount = cart.totalDiscount;
-    } else {
+    } else if(doc && doc.active == false){
+      req.session.cart.coupons = {
+        'description': 0
+      }
+      cart.coupons = {
+        'description': 'inActive'
+      }
+    }
+     else if(!doc) {
       req.session.cart.coupons = {
         'description': 0
       }

@@ -81,5 +81,16 @@
 	"Discount": "Discount",
 	"Proceed to Checkout": "Proceed to Checkout",
 	"No items in shopping cart": "No items in shopping cart",
-	"No items in shopping cart.": "No items in shopping cart."
+	"No items in shopping cart.": "No items in shopping cart.",
+	"Account Login": "Account Login",
+	"Username": "Username",
+	"Password": "Password",
+	"Remember me": "Remember me",
+	"Sign Up Account?": "Sign Up Account?",
+	"Login": "Login",
+	"Information cart": "Information cart",
+	"Total Price": "Total Price",
+	"Cart Total": "Cart Total",
+	"Delivery": "Delivery",
+	"Place an order": "Place an order"
 }
