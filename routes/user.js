@@ -23,8 +23,21 @@ router.post('/update/:email', (req, res) => {
   }, {
     upsert: true,
     new: true
-  }, (err, doc) => {
-    res.redirect('./user/profile')
+  }, async(err, doc) => {
+    await Product.updateMany({
+      'orderList.userInfo.email': doc.email
+    },{
+      '$set':{
+        'orderList.$.userInfo.name':req.body.fullName,
+        'orderList.$.userInfo.phoneNum':req.body.phoneNum,
+        'orderList.$.userInfo.address': req.body.address,
+      }
+    },{
+      upsert:true,
+      new:true
+    },(errs,rs)=>{
+    })
+    await res.redirect('./user/profile')
   })
 })
 
@@ -175,16 +188,16 @@ router.post('/signin', passport.authenticate('local.signin', {
 
 module.exports = router;
 
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-}
+// function isLoggedIn(req, res, next) {
+//   if (req.isAuthenticated()) {
+//     return next();
+//   }
+//   res.redirect('/');
+// }
 
-function notLoggedIn(req, res, next) {
-  if (!req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect('/');
-}
+// function notLoggedIn(req, res, next) {
+//   if (!req.isAuthenticated()) {
+//     return next();
+//   }
+//   res.redirect('/');
+// }

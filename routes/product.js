@@ -55,7 +55,7 @@ router.get('/detail/:id', (req, res, next) => {
         }
         if (userAcc && pro.orderList.length > 0) {
             for (var i = 0; i < pro.orderList.length; i++) {
-                if (pro.orderList[i].userInfo.email == userAcc.email) {
+                if (pro.orderList[i].userInfo.email == userAcc.email && pro.orderList[i].status == 1) {
                     checkReview = true;
                 }
             }
@@ -90,42 +90,43 @@ router.post('/review-product/:id', async (req, res) => {
         "userEmail": userEmail,
         "userName": userName,
         "rating": rating,
-        "description": description
+        "description": description,
+        "date_time": new Date().toISOString().slice(0,10)
     }
+    var updPro
     await Product.findById(id, async (err, doc) => {
         for (var i = 0; i < doc.reviews.length; i++) {
             if (doc.reviews[i].userEmail == userEmail) { // find userEmail exist
-                var updPro = await Product.findOneAndUpdate({
+                updPro = await Product.findOneAndUpdate({
                     'reviews.userEmail': userEmail
                 }, {
                     "$set": {
                         'reviews.$.userName': userName,
                         'reviews.$.rating': rating,
-                        'reviews.$.description': description
+                        'reviews.$.description': description,
+                        'reviews.$.date_time': new Date().toISOString().slice(0,10)
                     }
                 }, {
                     upsert: true,
                     new: true
                 }, async (err, docs) => {
-
                 })
             }
         }
-        if (updPro == undefined) {
-            Product.findOneAndUpdate({
-                _id: id
-            }, {
-                $push: {
-                    reviews: objReview
-                }
-            }, {
-                upsert: true,
-                new: true
-            }, async (err, doc) => {
-
-            })
-        }
     })
+    if (updPro == undefined) {
+        await Product.findOneAndUpdate({
+            _id: id
+        }, {
+            '$addToSet':{
+                reviews: objReview
+            }
+        }, {
+            new: true
+        }, async (err, doc) => {
+
+        })
+    }
     await Product.findById(id, async (err, doc) => {
         var sum = 0;
         var count = 0;
@@ -146,7 +147,8 @@ router.post('/review-product/:id', async (req, res) => {
         }, {
             upsert: true,
             new: true
-        }, function (err, doc) {})
+        }, function (err, doc) {
+        })
     })
     res.redirect('../detail/' + id)
 

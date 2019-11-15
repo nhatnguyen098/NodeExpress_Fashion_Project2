@@ -135,7 +135,7 @@ router.post('/add-order', async function (req, res, next) {
     <li>Total Price:$ ${cart.totalDiscount}.</li>
   </ul>
 ` + infoPro + `</tbody></table>` + `<h3>Total:$ ${cart.totalDiscount}.00</h3>`;
-  //await sendMail(output, "Customer Order", user.email)
+  // await sendMail(output, "Customer Order", user.email)
   req.session.cart = null;
   res.render('contact/notification')
 })
