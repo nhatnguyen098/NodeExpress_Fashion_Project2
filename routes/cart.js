@@ -32,7 +32,6 @@ router.get('/shopping-cart', function (req, res, next) {
   var couponId = req.query.couponCode;
   Coupon.findOne({
     '_id': couponId,
-    // 'active': true
   }, (err, doc) => {
     if (doc && doc.active == true) {
       req.session.cart.coupons = doc;
@@ -44,8 +43,9 @@ router.get('/shopping-cart', function (req, res, next) {
         'description': 0
       }
       cart.coupons = {
-        'description': 'inActive'
+        'description': 0
       }
+      var show_messages = 'The coupon code inActive!'
     }
      else if(!doc) {
       req.session.cart.coupons = {
@@ -56,12 +56,17 @@ router.get('/shopping-cart', function (req, res, next) {
       }
       cart.totalDiscount = cart.totalPrice
       req.session.cart.totalDiscount = cart.totalDiscount
+      if(couponId){
+        var show_messages = 'Not found coupon code!'
+      }
+
     }
     res.render('cart/shopping-cart', {
       products: cart.generateArray(),
       totalPrice: cart.totalPrice,
       couponCodes: cart.coupons,
-      priceDiscount: cart.totalDiscount
+      priceDiscount: cart.totalDiscount,
+      messages: show_messages
     })
   })
 })

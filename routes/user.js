@@ -174,7 +174,6 @@ router.post('/signin', passport.authenticate('local.signin', {
 }), function (req, res, next) {
   if (req.session.oldUrl) {
     var oldUrl = req.session.oldUrl;
-    console.log(oldUrl)
     req.session.oldUrl = null;
     res.redirect(oldUrl);
   } else {

@@ -14,7 +14,6 @@ router.get('/check-out', checkAuthen.isLoggedIn, function (req, res, next) {
   if (!req.session.cart) {
     return res.redirect('/cart/shopping-cart')
   }
-  console.log(req.session.cart.totalQty)
   var cart = new Cart(req.session.cart);
   res.render('order/checkout', {
     total: cart.totalPrice,
@@ -27,6 +26,7 @@ router.get('/check-out', checkAuthen.isLoggedIn, function (req, res, next) {
 
 
 router.post('/add-order', async function (req, res, next) {
+  
   var user = req.session.user
   var cart = new Cart(req.session.cart)
   var cartArr = cart.generateArray();
@@ -68,17 +68,6 @@ router.post('/add-order', async function (req, res, next) {
 
         })
       }
-      // totalProfit each product
-    //   Product.findOneAndUpdate({
-    //     _id: cartArr[i].item._id
-    //   }, {
-    //     $set: {
-    //       totalProfit: docs.totalProfit
-    //     }
-    //   }, {
-    //     upsert: true,
-    //     new: true
-    //   }, (err, doc) => {})
     })
 
 
@@ -135,7 +124,7 @@ router.post('/add-order', async function (req, res, next) {
     <li>Total Price:$ ${cart.totalDiscount}.</li>
   </ul>
 ` + infoPro + `</tbody></table>` + `<h3>Total:$ ${cart.totalDiscount}.00</h3>`;
-  // await sendMail(output, "Customer Order", user.email)
+  await sendMail(output, "Customer Order", user.email)
   req.session.cart = null;
   res.render('contact/notification')
 })

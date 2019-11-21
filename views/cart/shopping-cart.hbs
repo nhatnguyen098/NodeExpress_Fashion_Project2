@@ -52,18 +52,25 @@
 											<i class="fa fa-trash" aria-hidden="true"></i>
 										</button>
 										<div class="dropdown-menu">
-											<a class="dropdown-item" href="/cart/reduceByOne/{{this.item._id}}">Reduce by 1</a>
-											<a class="dropdown-item" href="/cart/removeAll/{{this.item._id}}">Remove all</a>
+											<a class="dropdown-item" href="/cart/reduceByOne/{{this.item._id}}">Reduce
+												by 1</a>
+											<a class="dropdown-item" href="/cart/removeAll/{{this.item._id}}">Remove
+												all</a>
 										</div>
 									</div>
 								</td>
-				
+
 							</tr>
 							{{/each}}
 						</table>
 					</div>
 
 					<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
+						{{#if messages}}
+						<div class="alert alert-danger">
+							<strong>{{messages}}</strong>
+						</div>
+						{{/if}}
 						<form action="/cart/shopping-cart" method="get">
 							<div class="flex-w flex-m m-r-20 m-tb-5">
 								<input id="couponCode" name="couponCode"
