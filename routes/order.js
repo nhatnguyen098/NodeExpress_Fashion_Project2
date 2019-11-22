@@ -100,6 +100,7 @@ router.post('/add-order', async function (req, res, next) {
       if (err) {
         return redirect('/')
       }
+      console.log(cartArr[i])
       infoPro += `
         <tbody>
         <tr>
