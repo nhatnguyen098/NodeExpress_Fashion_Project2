@@ -30,10 +30,12 @@ router.post('/add-order', async function (req, res, next) {
   var user = req.session.user
   var cart = new Cart(req.session.cart)
   var cartArr = cart.generateArray();
+  console.log(cartArr)
   var infoPro = `<table class="table">
   <thead>
   <tr>
     <th>Product Name</th>
+    <th>Size</th>
     <th>Quantity</th>
     <th>Price</th>
     <th>Total Price</th>
@@ -75,6 +77,7 @@ router.post('/add-order', async function (req, res, next) {
       "orderDate": new Date(),
       "totalQuantity": cartArr[i].qty,
       "totalPrice": cartArr[i].price,
+      "Size": cartArr[i].size,
       "couponCode": cart.coupons,
       "totalHasDiscount": profit, // change cart.totalDiscount
       "statusShip": "Not yet",
@@ -100,11 +103,11 @@ router.post('/add-order', async function (req, res, next) {
       if (err) {
         return redirect('/')
       }
-      console.log(cartArr[i])
       infoPro += `
         <tbody>
         <tr>
           <td>${cartArr[i].item.title}</td>
+          <td>${cartArr[i].size}</td>
           <td>${cartArr[i].qty}</td>
           <td>${cartArr[i].item.price}</td>
           <td>${cartArr[i].qty * cartArr[i].item.price}</td>

@@ -26,11 +26,12 @@
 						<table class="table-shopping-cart">
 							<tr class="table_head">
 								<th class="column-1">{{__ "Product"}}</th>
-								<th class="column-2"></th>
+								<th class="column-3"></th>
+								<th class="column-3">{{__ "Size"}}</th>
 								<th class="column-3">{{__ "Price"}}</th>
-								<th class="column-4">{{__ "Quantity"}}</th>
-								<th class="column-5">{{__ "Total"}}</th>
-								<th class="column-6">{{__ "Delete"}}</th>
+								<th class="column-3">{{__ "Quantity"}}</th>
+								<th class="column-3">{{__ "Total"}}</th>
+								<th class="column-3">{{__ "Delete"}}</th>
 							</tr>
 							{{#each products}}
 							<tr class="table_row">
@@ -39,22 +40,23 @@
 										<img src="/images/{{this.item.imagePath}}" alt="IMG">
 									</div>
 								</td>
-								<td class="column-2">{{this.item.title}}</td>
+								<td class="column-3">{{this.item.title}}</td>
+								<td class="column-3">{{this.size}}</td>
 								<td class="column-3">{{this.item.price}}</td>
-								<td class="column-4 text-center">
+								<td class="column-3">
 									{{this.qty}}
 								</td>
-								<td class="column-5">$ {{this.price}}</td>
-								<td class="column-6" style="padding-bottom:30px; padding-right:40px;">
+								<td class="column-3">$ {{this.price}}</td>
+								<td class="column-3" style="padding-bottom:30px">
 									<div class="dropdown">
 										<button type="button" class="btn btn-danger dropdown-toggle"
 											data-toggle="dropdown">
 											<i class="fa fa-trash" aria-hidden="true"></i>
 										</button>
 										<div class="dropdown-menu">
-											<a class="dropdown-item" href="/cart/reduceByOne/{{this.item._id}}">Reduce
+											<a class="dropdown-item" href="/cart/reduceByOne/{{this.item._id}}_{{this.size}}">Reduce
 												by 1</a>
-											<a class="dropdown-item" href="/cart/removeAll/{{this.item._id}}">Remove
+											<a class="dropdown-item" href="/cart/removeAll/{{this.item._id}}_{{this.size}}">Remove
 												all</a>
 										</div>
 									</div>

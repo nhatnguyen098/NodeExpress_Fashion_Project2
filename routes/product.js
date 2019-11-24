@@ -7,19 +7,39 @@ var sizes = 8;
 
 router.get('/product-more', async (req, res) => {
     sizes = await (sizes + 4)
-    Product.find(async (err, docs) => {
-        if (sizes >= docs.length) {
+    await Product.paginate({}, {
+        page: 1,
+        limit: sizes
+    }, async function (err, rs) {
+        var docs = rs.docs
+        var productChunks = []
+        if (sizes > docs.length) {
             sizes = docs.length
             var hidenMore = true;
         }
-        var productChunks = [];
-        productChunks = await paginate(1, sizes)
+        var chuckSize = 4;
+        for (var i = 0; i < docs.length; i += chuckSize) {
+            productChunks.push(docs.slice(i, i + chuckSize))
+        }
         await res.render('product/productList', {
             products: productChunks,
             hidenMore: hidenMore
         });
-
     })
+
+    // Product.find(async (err, docs) => {
+    //     if (sizes >= docs.length) {
+    //         sizes = docs.length
+    //         var hidenMore = true;
+    //     }
+    //     var productChunks = [];
+    //     productChunks = await paginate(1, sizes)
+    //     await res.render('product/productList', {
+    //         products: productChunks,
+    //         hidenMore: hidenMore
+    //     });
+
+    // })
 })
 
 router.post('/product-search', async (req, res) => {
@@ -91,7 +111,7 @@ router.post('/review-product/:id', async (req, res) => {
         "userName": userName,
         "rating": rating,
         "description": description,
-        "date_time": new Date().toISOString().slice(0,10)
+        "date_time": new Date().toISOString().slice(0, 10)
     }
     var updPro
     await Product.findById(id, async (err, doc) => {
@@ -104,13 +124,12 @@ router.post('/review-product/:id', async (req, res) => {
                         'reviews.$.userName': userName,
                         'reviews.$.rating': rating,
                         'reviews.$.description': description,
-                        'reviews.$.date_time': new Date().toISOString().slice(0,10)
+                        'reviews.$.date_time': new Date().toISOString().slice(0, 10)
                     }
                 }, {
                     upsert: true,
                     new: true
-                }, async (err, docs) => {
-                })
+                }, async (err, docs) => {})
             }
         }
     })
@@ -118,7 +137,7 @@ router.post('/review-product/:id', async (req, res) => {
         await Product.findOneAndUpdate({
             _id: id
         }, {
-            '$addToSet':{
+            '$addToSet': {
                 reviews: objReview
             }
         }, {
@@ -147,8 +166,7 @@ router.post('/review-product/:id', async (req, res) => {
         }, {
             upsert: true,
             new: true
-        }, function (err, doc) {
-        })
+        }, function (err, doc) {})
     })
     res.redirect('../detail/' + id)
 

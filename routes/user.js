@@ -186,17 +186,3 @@ router.post('/signin', passport.authenticate('local.signin', {
 
 
 module.exports = router;
-
-// function isLoggedIn(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     return next();
-//   }
-//   res.redirect('/');
-// }
-
-// function notLoggedIn(req, res, next) {
-//   if (!req.isAuthenticated()) {
-//     return next();
-//   }
-//   res.redirect('/');
-// }

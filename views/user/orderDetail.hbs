@@ -20,27 +20,30 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="bmd-label-floating font-weight-bold">Product Name:</label>
                                         {{orderDetail.proName}}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating font-weight-bold">Product Price:</label>
-
-                                        ${{orderDetail.proPrice}}
-
+                                        <label class="bmd-label-floating font-weight-bold">Size:</label>
+                                        {{orderDetail.Size}}
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label class="bmd-label-floating font-weight-bold">Order Quantity:</label>
                                         {{orderDetail.totalQuantity}}
                                     </div>
                                 </div>
-
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating font-weight-bold">Product Price:</label>
+                                        ${{orderDetail.proPrice}}
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-4">

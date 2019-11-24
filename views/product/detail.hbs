@@ -72,11 +72,11 @@
                                 <div class="size-204 respon6-next">
                                     <div class="rs1-select2 bor8 bg0">
                                         <select class="js-select2 form-control" id="size" name="size">
-                                            <option value="0">{{__ "Choose an option"}}</option>
-                                            <option value="1">Size S</option>
-                                            <option value="2">Size M</option>
-                                            <option value="3">Size L</option>
-                                            <option value="4">Size XL</option>
+                                            {{!-- <option value="0">{{__ "Choose an option"}}</option> --}}
+                                            <option value="S">Size S</option>
+                                            <option value="M">Size M</option>
+                                            <option value="L">Size L</option>
+                                            <option value="XL">Size XL</option>
                                         </select>
                                         <div class="dropDownSelect2"></div>
                                     </div>
@@ -90,12 +90,12 @@
 
                                 <div class="size-204 respon6-next">
                                     <div class="rs1-select2 bor8 bg0">
-                                        <select class="js-select2 form-control" name="colori">
+                                        <select class="js-select2 form-control" id="colori" name="colori">
                                             <option value="0">Choose an option</option>
-                                            <option value="1">Red</option>
-                                            <option value="2">Blue</option>
-                                            <option value="3">White</option>
-                                            <option value="4">Grey</option>
+                                            <option value="Red">Red</option>
+                                            <option value="Blue">Blue</option>
+                                            <option value="White">White</option>
+                                            <option value="Grey">Grey</option>
                                         </select>
                                         <div class="dropDownSelect2"></div>
                                     </div>
@@ -128,30 +128,7 @@
                     </div>
 
                     <!--  -->
-                    <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                        <div class="flex-m bor9 p-r-10 m-r-11">
-                            <a href="#"
-                                class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100"
-                                data-tooltip="Add to Wishlist">
-                                <i class="zmdi zmdi-favorite"></i>
-                            </a>
-                        </div>
-
-                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                            data-tooltip="Facebook">
-                            <i class="fa fa-facebook"></i>
-                        </a>
-
-                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                            data-tooltip="Twitter">
-                            <i class="fa fa-twitter"></i>
-                        </a>
-
-                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100"
-                            data-tooltip="Google Plus">
-                            <i class="fa fa-google-plus"></i>
-                        </a>
-                    </div>
+                   
                 </div>
             </div>
         </div>
@@ -293,10 +270,6 @@
                                                     </p>
 
                                                 </span>
-
-
-
-
 
                                                 <span id="ratingStar" class="fs-18 cl11">
                                                     {{this.rating}}

@@ -8,14 +8,17 @@ var Coupon = require('../models/coupon')
 
 
 router.post('/add-to-cart/:id', function (req, res, next) {
-  var productId = req.params.id;
-  var qty = req.body.num;
+  var productId = req.params.id
+  var qty = req.body.num
+  var size = req.body.size
+  //var colori = req.body.colori
   var cart = new Cart(req.session.cart ? req.session.cart : {});
   Product.findById(productId, function (err, product) {
     if (err) {
       return res.redirect('/')
     }
-    cart.add(product, product.id, qty)
+    cart.add(product, product.id, qty,size)
+    console.log(cart.generateArray())
     req.session.cart = cart;
     res.redirect('/cart/shopping-cart');
   })

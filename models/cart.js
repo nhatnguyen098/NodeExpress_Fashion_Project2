@@ -6,13 +6,15 @@ module.exports = function Cart(oldCart) {
         description: 0
     };
     this.totalDiscount = oldCart.totalDiscount || this.totalPrice;
-    this.add = function (item, id, quantity) {
-        var storedItem = this.items[id];
+    this.add = function (item, id, quantity, size) {
+        var keyId = id + '_' + size
+        var storedItem = this.items[keyId];
         if (!storedItem) {
-            storedItem = this.items[id] = {
+            storedItem = this.items[keyId] = {
                 item: item,
                 qty: 0,
-                price: 0
+                price: 0,
+                size: size
             };
             this.totalQty++;
         }

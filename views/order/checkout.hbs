@@ -119,22 +119,25 @@
                             <div class="cart-detail bg-light p-3 p-md-4">
                                 <h3 class="billing-heading mb-4">{{__ "Information cart"}}</h3>
                                 <div class="row" style="padding-bottom: 15px">
-                                    <div class="col-4" style="padding-left: 30px">{{__ "Product"}}</div>
-                                    <div class="col-4" style="padding-left: 65px">{{__ "Quantity"}}</div>
-                                    <div class="col-4" style="padding-left: 30px">{{__ "Total Price"}} ($)</div>
+                                    <div class="col-3" style="padding-left:25px">{{__ "Product"}}</div>
+                                    <div class="col-3">{{__ "Size"}}</div>
+                                    <div class="col-3">{{__ "Quantity"}}</div>
+                                    <div class="col-3">{{__ "Total"}} ($)</div>
                                 </div>
                                 {{#each products}}
                                 <div class="form-group">
                                     <div class="col-md-12">
-
                                         <div class="row">
-                                            <div class="col-4">
+                                            <div class="col-3">
                                                 {{this.item.title}}
                                             </div>
-                                            <div class="col-4" style="padding-left: 80px">
+                                            <div class="col-3">
+                                                {{this.size}}
+                                            </div>
+                                            <div class="col-3">
                                                 {{this.qty}}
                                             </div>
-                                            <div class="col-4" style="padding-left: 40px">
+                                            <div class="col-3">
                                                 ${{this.price}}.00
                                             </div>
 
