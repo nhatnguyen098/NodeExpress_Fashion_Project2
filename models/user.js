@@ -12,7 +12,8 @@ var userSchema = new Schema({
     status: {type:String},
     company: {type:String},
     description: {type:String},
-    birthday: {type:Date}
+    birthday: {type:Date},
+    orderList: []
 })
 userSchema.methods.encryptPassword = function(password){
     return bcrypt.hashSync(password,bcrypt.genSaltSync(5),null);

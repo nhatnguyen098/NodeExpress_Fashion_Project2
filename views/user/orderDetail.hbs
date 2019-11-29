@@ -19,32 +19,37 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-12 row">
+                                <div class="form-group">
+                                    <label class="bmd-label-floating font-weight-bold">Product detail in order:</label>
+                                </div>
+                            </div>
+                            {{#each orderDetail.orderList}}
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating font-weight-bold">Product Name:</label>
-                                        {{orderDetail.proName}}
+                                        <label class="bmd-label-floating">Product Name: {{this.proName}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Size: {{this.Size}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label class="bmd-label-floating">Quantity: {{this.totalQuantity}}</label>
+
                                     </div>
                                 </div>
                                 <div class="col-md-3">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating font-weight-bold">Size:</label>
-                                        {{orderDetail.Size}}
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating font-weight-bold">Order Quantity:</label>
-                                        {{orderDetail.totalQuantity}}
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label class="bmd-label-floating font-weight-bold">Product Price:</label>
-                                        ${{orderDetail.proPrice}}
+                                        <label class="bmd-label-floating">Total price: ${{this.totalPrice}}</label>
+
                                     </div>
                                 </div>
                             </div>
+                            {{/each}}
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="form-group">
@@ -73,8 +78,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label class="bmd-label-floating font-weight-bold">Discount:</label>
-                                        {{orderDetail.couponCode.description}}
+                                        <label class="bmd-label-floating font-weight-bold">Discount:
+                                            {{orderDetail.couponCode.description}}</label>
+
                                     </div>
                                 </div>
 
@@ -112,12 +118,13 @@
                             <div class="row">
                                 <div class="col-12">
                                     {{!-- data-toggle="modal" data-target="#modelId" --}}
-                                    <form action="/user/deleteOrder/{{orderDetail.id}}" method="POST">
-
-                                        {{!-- <input type="text" class="form-control" name="proId" id="proId"
-                                            value="{{orderDetail.id}}" hidden="false"> --}}
-                                        <input type="text" class="form-control" name="numberOrder" id="numberOrder"
-                                            value="{{orderDetail.numberOrder}}" hidden="false">
+                                    <form action="/user/deleteOrder" method="POST">
+                                        {{!-- <input type="text" class="form-control" name="numberOrder" id="numberOrder"
+                                            value="{{orderDetail.number}}" hidden="false"> --}}
+                                        {{!-- <input type="text" class="form-control" name="arrPro" id="arrPro"
+                                            value="{{#each arr_proId}}{{this}}-{{/each}}" hidden="false"> --}}
+                                        <input type="text" class="form-control" name="arrPro" id="arrPro"
+                                            value="{{arr_proDelet}}" hidden="false">
                                         <button type="submit" class="btn btn-danger pull-right">Delete</button>
                                     </form>
 

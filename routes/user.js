@@ -23,66 +23,87 @@ router.post('/update/:email', (req, res) => {
   }, {
     upsert: true,
     new: true
-  }, async(err, doc) => {
+  }, async (err, doc) => {
     await Product.updateMany({
       'orderList.userInfo.email': doc.email
-    },{
-      '$set':{
-        'orderList.$.userInfo.name':req.body.fullName,
-        'orderList.$.userInfo.phoneNum':req.body.phoneNum,
+    }, {
+      '$set': {
+        'orderList.$.userInfo.name': req.body.fullName,
+        'orderList.$.userInfo.phoneNum': req.body.phoneNum,
         'orderList.$.userInfo.address': req.body.address,
       }
-    },{
-      upsert:true,
-      new:true
-    },(errs,rs)=>{
-    })
+    }, {
+      upsert: true,
+      new: true
+    }, (errs, rs) => {})
     await res.redirect('./user/profile')
   })
 })
 
-router.post('/viewDetail',checkAuthen.isLoggedIn, (req, res) => {
-
-  Product.findOne({
-    '_id': req.body.pro_id
-  }, (err, docs) => {
-    docs.orderList.forEach(s => {
-      if (s.numberOrder == req.body.numberOrder) {
-        s.id = docs._id
-        s.proName = docs.title
-        s.proPrice = docs.price
-        if(s.couponCode.discount){
-          s.totalPrice -= (s.totalPrice * s.couponCode.discount)
-        }
-        s.orderDate = s.orderDate.toISOString()
-        res.render('user/orderDetail', {
-          orderDetail: s
-        })
+router.post('/viewDetail', checkAuthen.isLoggedIn, (req, res) => {
+  User.findOne({
+    'email': req.body.email,
+  }, async (err, user) => {
+    Product.find((err, product) => {
+      var arrProduct = [],
+        arr_proDelet = []
+      var obj = {
+        'orderList': []
       }
+      user.orderList.forEach(s => {
+        if (s.number == req.body.numberOrder) {
+          obj.totalPrice = s.totalPrice
+          obj.orderDate = s.orderDate
+          s.sub_order.forEach(x => {
+            product.forEach(pro => {
+              if (pro._id == x.proId) {
+                x.orderNumber.forEach(o => {
+                  pro.orderList.forEach(p => {
+                    if (o == p.numberOrder) {
+                      p.proName = pro.title
+                      arrProduct.push(p) // view product detail
+                      // setup delete product
+                      var proDelete = {
+                        '_id': pro._id,
+                        'numberOrder': p.numberOrder
+                      }
+                      arr_proDelet.push(proDelete)
+                    }
+                  })
+                })
+              }
+            })
+          })
+        }
+      })
+      obj.userInfo = arrProduct[0].userInfo
+      obj.couponCode = arrProduct[0].couponCode
+      obj.orderList = arrProduct
+      res.render('user/orderDetail', {
+        orderDetail: obj,
+        arr_proDelet: JSON.stringify(arr_proDelet)
+      })
     })
   })
-
 })
 
-router.post('/deleteOrder/:id', async (req, res) => {
-
-  var updPro = await Product.findOneAndUpdate({
-    '_id': req.params.id,
-    'orderList.numberOrder': Number(req.body.numberOrder)
-  }, {
-    "$set": {
-      'orderList.$.status': -1,
-    }
-  }, {
-    upsert: true,
-    new: true
-  }, async (err, docs) => {
-    // res.render('user/profile')
-    res.redirect('../profile')
+router.post('/deleteOrder', async (req, res) => {
+  var arr_proDelet = JSON.parse(req.body.arrPro)
+  arr_proDelet.forEach(pro => {
+    var updPro = Product.findOneAndUpdate({
+      '_id': pro._id,
+      'orderList.numberOrder': pro.numberOrder
+    }, {
+      "$set": {
+        'orderList.$.status': -1,
+      }
+    }, {
+      upsert: true,
+      new: true
+    }, async (err, docs) => {
+    })
   })
-
-
-
+  res.redirect('./profile')
 })
 
 
@@ -94,23 +115,6 @@ router.use(csurfProtection);
 
 router.get('/profile', checkAuthen.isLoggedIn, function (req, res, next) {
   var user = req.session.user
-  var arr = [];
-  Product.find(async (err, docs) => {
-    for (var i = 0; i < docs.length; i++) {
-      for (var s = docs[i].orderList.length - 1; s >= 0; s--) {
-        if (docs[i].orderList[s].userInfo) {
-          if (docs[i].orderList[s].userInfo.email == user.email && docs[i].orderList[s].status == 0) {
-            docs[i].orderList[s].orderDate = docs[i].orderList[s].orderDate.toISOString().slice(0, 10)
-            var objOrder = {
-              'id': docs[i]._id,
-              'orderInfo': docs[i].orderList[s],
-            }
-            await arr.push(objOrder)
-          }
-        }
-      }
-    }
-  })
   User.findOne({
     'email': user.email
   }, (err, doc) => {
@@ -118,13 +122,41 @@ router.get('/profile', checkAuthen.isLoggedIn, function (req, res, next) {
     if (doc.birthday != null) {
       birthday = doc.birthday.toISOString().slice(0, 10)
     }
-    res.render('user/profile', {
-      users: doc,
-      orderList: arr,
-      birthday: birthday
+    Product.find((err, pro) => {
+      var orderList_user = []
+      doc.orderList.forEach(s => {
+        var check = true
+        s.sub_order.forEach(x => {
+          pro.forEach(p => {
+            if (x.proId == p._id) {
+              p.orderList.forEach(o => {
+                x.orderNumber.forEach(ord => {
+                  if (ord == o.numberOrder && o.status != 0) {
+                    check = false
+                  }
+                })
+              })
+            }
+
+          })
+        })
+        if (check == true) {
+          // setup view order list by date
+          var obj_orders = {}
+          obj_orders.orderDate = s.orderDate
+          obj_orders.number = s.number
+          obj_orders.email = doc.email
+          orderList_user.push(obj_orders)
+          // end setup view order list by date
+        }
+      })
+      res.render('user/profile', {
+        users: doc,
+        orderList: orderList_user,
+        birthday: birthday
+      })
     })
   })
-
 })
 
 router.get('/logout', checkAuthen.isLoggedIn, function (req, res, next) {
