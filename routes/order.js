@@ -27,7 +27,6 @@ router.get('/check-out', checkAuthen.isLoggedIn, function (req, res, next) {
 
 
 router.post('/add-order', async function (req, res, next) {
-
   var user = req.session.user
   var cart = new Cart(req.session.cart)
   var cartArr = cart.generateArray();
@@ -44,7 +43,9 @@ router.post('/add-order', async function (req, res, next) {
   var arrNum_order = []
   var orderDate = new Date()
   var numberOrder_user = 0
-  var user_find = await User.findOne({'email': user.email},async (err,users)=>{
+  var user_find = await User.findOne({
+    'email': user.email
+  }, async (err, users) => {
     numberOrder_user = await users.orderList.length + 1;
   })
   for (var i = 0; i < cartArr.length; i++) {
@@ -105,20 +106,23 @@ router.post('/add-order', async function (req, res, next) {
       $addToSet: {
         orderList: objOrder
       }
-    },async (err, doc) => {
+    }, async (err, doc) => {
       if (err) {
         return redirect('/')
       }
       if (doc) {
         var check = true
-        await arrNum_order.forEach(s=>{
-          if(s.proId == cartArr[i].item._id){
+        await arrNum_order.forEach(s => {
+          if (s.proId == cartArr[i].item._id) {
             s.orderNumber.push(objOrder.numberOrder)
             check = false
           }
         })
-        if(check == true){
-          var obj = {'proId': cartArr[i].item._id,'orderNumber':[]}
+        if (check == true) {
+          var obj = {
+            'proId': cartArr[i].item._id,
+            'orderNumber': []
+          }
           obj.orderNumber.push(objOrder.numberOrder)
           arrNum_order.push(obj)
         }
@@ -139,12 +143,16 @@ router.post('/add-order', async function (req, res, next) {
 
   var upd_user = await User.findOneAndUpdate({
     'email': user.email
-  },{
-    $addToSet:{
-      orderList: {'orderDate': orderDate,'sub_order':arrNum_order, number: numberOrder_user, totalPrice:cart.totalDiscount}
+  }, {
+    $addToSet: {
+      orderList: {
+        'orderDate': orderDate,
+        'sub_order': arrNum_order,
+        number: numberOrder_user,
+        totalPrice: cart.totalDiscount
+      }
     }
-  }, async (err, rs) => {
-  })
+  }, async (err, rs) => {})
 
   var output = await `
   <p>You have a new order</p>
@@ -162,7 +170,7 @@ router.post('/add-order', async function (req, res, next) {
 ` + infoPro + `</tbody></table>` + `<h3>Total:$ ${cart.totalDiscount}.00</h3>`;
   // await sendMail(output, "Customer Order", user.email)
   req.session.cart = null;
-  res.render('contact/notification')
+  await res.render('contact/notification')
 })
 
 

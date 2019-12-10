@@ -43,20 +43,21 @@ router.post('/update/:email', (req, res) => {
 router.post('/viewDetail', checkAuthen.isLoggedIn, (req, res) => {
   User.findOne({
     'email': req.body.email,
+    'role': 'Customer'
   }, async (err, user) => {
-    Product.find((err, product) => {
+    await Product.find(async (err, product) => {
       var arrProduct = [],
         arr_proDelet = []
       var obj = {
         'orderList': []
       }
-      user.orderList.forEach(s => {
-        if (s.number == req.body.numberOrder) {
+      await user.orderList.forEach(s => {
+        if (s.number == Number(req.body.numberOrder)) {
           obj.totalPrice = s.totalPrice
           obj.orderDate = s.orderDate
           s.sub_order.forEach(x => {
             product.forEach(pro => {
-              if (pro._id == x.proId) {
+              if (x.proId == pro._id) {
                 x.orderNumber.forEach(o => {
                   pro.orderList.forEach(p => {
                     if (o == p.numberOrder) {
@@ -76,10 +77,10 @@ router.post('/viewDetail', checkAuthen.isLoggedIn, (req, res) => {
           })
         }
       })
-      obj.userInfo = arrProduct[0].userInfo
-      obj.couponCode = arrProduct[0].couponCode
-      obj.orderList = arrProduct
-      res.render('user/orderDetail', {
+      obj.userInfo = await arrProduct[0].userInfo
+      obj.couponCode = await arrProduct[0].couponCode
+      obj.orderList = await arrProduct
+      await res.render('user/orderDetail', {
         orderDetail: obj,
         arr_proDelet: JSON.stringify(arr_proDelet)
       })
@@ -100,8 +101,7 @@ router.post('/deleteOrder', async (req, res) => {
     }, {
       upsert: true,
       new: true
-    }, async (err, docs) => {
-    })
+    }, async (err, docs) => {})
   })
   res.redirect('./profile')
 })
