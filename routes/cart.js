@@ -18,7 +18,6 @@ router.post('/add-to-cart/:id', function (req, res, next) {
       return res.redirect('/')
     }
     cart.add(product, product.id, qty,size)
-    console.log(cart.generateArray())
     req.session.cart = cart;
     res.redirect('/cart/shopping-cart');
   })
