@@ -1,3 +1,13 @@
+<script>
+    window.onload = () =>{
+        var check_cart = {{{session.cart}}}
+        var check_user = {{{session.user}}}
+        console.log(check_user)
+        if(!check_user && !check_cart){
+            window.location.href = "../user/signin"
+        }
+    }
+</script>
 <head>
     <link rel="stylesheet" href="/css/animate.css">
     <link rel="stylesheet" href="/css/style_checkout.css">
@@ -17,26 +27,6 @@
     </div>
 </div>
 <div class="padding-bottom:10px"></div>
-{{!-- <form class="bg0 p-t-75 p-b-85">
-    <div class="container text-center text-dark" style="padding-bottom:90px">
-        <h1 style="padding-bottom:15px;">Thanks for using services.!</h1>
-        <h3 style="padding-bottom:15px;">We will make your request as soon as possible.</h3>
-        <div class="row text-center" style="padding-top:20px">
-            <div class="col-3"></div>
-            <div class="col-3" style="text-align: right">
-                <a href="/" class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                    <h5>Come back Home page</h5>
-                </a>
-            </div>
-            <div style="text-align:left" class="col-3">
-                <a href="/product/1"
-                    class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-                    <h5>Continue Shopping</h5>
-                </a>
-            </div>
-        </div>
-    </div>
-</form> --}}
 <!-- loader -->
 <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px">
         <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
