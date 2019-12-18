@@ -17,6 +17,9 @@ var orderRouter = require('./routes/order')
 var indexRouter = require('./routes/index');
 var contactRouter = require('./routes/contact')
 var i18n = require('i18n')
+const passportSetup = require('./config/passport-gmail')
+
+
 var app = express();
 
 mongoose.connect('mongodb://localhost:27017/shopping', {

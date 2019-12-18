@@ -8,6 +8,22 @@ var csurfProtection = csrf();
 var checkAuthen = require('../config/checkAuthenticate')
 
 
+router.get('/google',passport.authenticate('google',{
+  scope:['profile','email']
+}))
+
+router.get('/google/redirect',passport.authenticate('google'),(req,res)=>{
+  req.session.user = req.user
+  console.log(req.user)
+  if (req.session.oldUrl) {
+    var oldUrl = req.session.oldUrl;
+    req.session.oldUrl = null;
+    res.redirect(oldUrl);
+  } else {
+    res.redirect('./profile')
+  }
+})
+
 router.post('/update/:email', (req, res) => {
   User.findOneAndUpdate({
     'email': req.params.email

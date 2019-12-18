@@ -50,7 +50,8 @@ passport.use('local.signup', new localStrategy({
         newUser.role = "Customer"
         newUser.address = ""
         newUser.company = ""
-        newUser.birthday = ""
+        newUser.birthday = "",
+        newUser.googleId = null,
         req.session.user = newUser
         newUser.save(function (err, result) {
             if (err) {
@@ -72,6 +73,9 @@ passport.use('local.signin', new localStrategy({
         }
         if (!user) {
             return done(null, false, { message: 'No user found.' });
+        }
+        if(user.googleId || user.googleId != null){
+            return done(null,false,{message: 'This account must login by Gmail.!'})
         }
         if (!user.validPassword(password)) {
             return done(null, false, { message: 'Wrong password.' });

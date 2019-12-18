@@ -4,16 +4,17 @@ var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = new Schema({
     email: {type: String, required: true},
-    password: {type: String, required: true},
+    password: {type: String},
     fullName: {type: String, required: true},
-    phoneNum: {type: String, required: true},
+    phoneNum: {type: String},
     address: {type: String},
     role: {type:String},
     status: {type:String},
     company: {type:String},
     description: {type:String},
     birthday: {type:Date},
-    orderList: []
+    orderList: [],
+    googleId: {type:String}
 })
 userSchema.methods.encryptPassword = function(password){
     return bcrypt.hashSync(password,bcrypt.genSaltSync(5),null);
